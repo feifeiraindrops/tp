@@ -3,13 +3,12 @@ package seedu.address.model.studentscore;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
-
 
 /**
  * A list of student scores that enforces uniqueness between its elements and does not allow nulls.
@@ -108,6 +107,23 @@ public class UniqueStudentScoreList implements Iterable<StudentScore> {
         }
 
         internalList.setAll(scores);
+    }
+
+    /**
+     * Sorts the score list based on the performance.
+     */
+    public void sortScore(boolean reverse) {
+        internalList.sort(new Comparator<StudentScore>() {
+            public int compare(StudentScore s1, StudentScore s2) {
+                Float s1Value = s1.getScore();
+                Float s2Value = s2.getScore();
+                if (!reverse) {
+                    return s1Value.compareTo(s2Value);
+                } else {
+                    return s2Value.compareTo(s1Value);
+                }
+            }
+        });
     }
 
     /**

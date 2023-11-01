@@ -51,6 +51,13 @@ public class StudentScoreBook implements ReadOnlyStudentScoreBook {
     }
 
     /**
+     * Sorts all student scores from this {@code StudentBook}.
+     */
+    public void sortStudentScore(boolean reverse) {
+        studentScores.sortScore(reverse);
+    }
+
+    /**
      * Resets the existing data of this {@code StudentScoreBook} with {@code newData}.
      */
     public void resetData(ReadOnlyStudentScoreBook newData) {

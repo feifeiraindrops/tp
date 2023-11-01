@@ -25,6 +25,7 @@ import seedu.address.logic.commands.FindStudentCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListStudentsCommand;
 import seedu.address.logic.commands.SortStudentCommand;
+import seedu.address.logic.commands.SortStudentScoreCommand;
 import seedu.address.logic.commands.StatsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -94,8 +95,11 @@ public class AddressBookParser {
             return new CompStatsCommandParser().parse(arguments);
         case SortStudentCommand.COMMAND_WORD:
             return new SortStudentCommandParser().parse(arguments);
+        case SortStudentScoreCommand.COMMAND_WORD:
+            return new SortStudentScoreCommandParser().parse(arguments);
         case AutoGradeCommand.COMMAND_WORD:
             return new AutoGradeCommandParser().parse(arguments);
+
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

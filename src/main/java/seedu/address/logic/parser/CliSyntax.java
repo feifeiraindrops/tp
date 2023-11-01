@@ -25,6 +25,10 @@ public class CliSyntax {
 
     public static final Prefix PREFIX_STATS = new Prefix("st/");
 
+    public static final Prefix PREFIX_ORDER = new Prefix("o/");
+
+    public static final Prefix PREFIX_REVERSE = new Prefix("r/");
+
 
 
 }

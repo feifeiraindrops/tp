@@ -34,7 +34,7 @@ public class StudentMatchPredicate implements Predicate<Student> {
     @Override
     public boolean test(Student student) {
         boolean idMatch = idKeywords.isEmpty() || idKeywords.stream()
-                .anyMatch(keyword -> student.getStudentId().toString().equalsIgnoreCase(keyword));
+                .anyMatch(keyword -> student.getStudentId().toString().toLowerCase().contains(keyword.toLowerCase()));
         boolean nameMatch = nameKeywords.isEmpty() || nameKeywords.stream()
                 .anyMatch(keyword -> student.getName().toString().toLowerCase().contains(keyword.toLowerCase()));
         boolean emailMatch = emailKeywords.isEmpty() || emailKeywords.stream()
@@ -42,7 +42,7 @@ public class StudentMatchPredicate implements Predicate<Student> {
         boolean tutMatch = tutorialGroupKeywords.isEmpty() || tutorialGroupKeywords.stream()
                 .anyMatch(keyword -> student.getTutorial().toString().equalsIgnoreCase(keyword));
         boolean tagMatch = tagKeywords.isEmpty() || student.getTags().stream()
-                .anyMatch(tag -> tagKeywords.contains(tag.tagName));
+                .anyMatch(tag -> tagKeywords.contains(tag.tagName.toLowerCase()));
         return idMatch && nameMatch && emailMatch && tutMatch && tagMatch;
     }
 

@@ -6,6 +6,7 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.gradedcomponent.GcName;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.StudentId;
 import seedu.address.model.student.UniqueStudentList;
@@ -109,6 +110,14 @@ public class StudentBook implements ReadOnlyStudentBook {
      */
     public void sortStudent(String order, boolean reverse) {
         students.sort(order, reverse);
+    }
+
+    /**
+     * Sorts all students from this {@code StudentBook} based on their performance
+     * under a given graded component.
+     */
+    public void sortStudentScore(GcName gcName, boolean reverse) {
+        students.sortScore(gcName, reverse);
     }
 
     public int getSize() {

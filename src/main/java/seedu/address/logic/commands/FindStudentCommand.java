@@ -10,7 +10,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_GROUP;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.model.Model;
+import seedu.address.model.gradedcomponent.GcMatchPredicate;
 import seedu.address.model.student.StudentMatchPredicate;
+import seedu.address.model.studentscore.ScoreMatchPredicate;
 
 /**
  * Finds the student(s) whose student id is matching the given Student IDs exactly.
@@ -29,18 +31,34 @@ public class FindStudentCommand extends Command {
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " s/A1234567Z";
 
-    private final StudentMatchPredicate predicate;
+    private final StudentMatchPredicate studentPredicate;
+    private final ScoreMatchPredicate scorePredicate;
+    private final GcMatchPredicate gcPredicate;
 
-    public FindStudentCommand(StudentMatchPredicate predicate) {
-        this.predicate = predicate;
+    /**
+     * Instantiates a new Find student command.
+     *
+     * @param studentPredicatepredicate the student predicatepredicate
+     * @param scorePredicate            the score predicate
+     * @param gcPredicate               the gc predicate
+     */
+    public FindStudentCommand(StudentMatchPredicate studentPredicatepredicate,
+                              ScoreMatchPredicate scorePredicate, GcMatchPredicate gcPredicate) {
+        this.studentPredicate = studentPredicatepredicate;
+        this.scorePredicate = scorePredicate;
+        this.gcPredicate = gcPredicate;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredStudentList(predicate);
-        return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredStudentList().size()));
+        model.updateFilteredStudentList(studentPredicate);
+        model.updateFilteredStudentScoreList(scorePredicate);
+        model.updateFilteredGradedComponentList(gcPredicate);
+        return new CommandResult(String.format(Messages.MESSAGE_TOTAL_LISTED_OVERVIEW,
+                model.getFilteredStudentList().size(),
+                model.getFilteredStudentScoreList().size(),
+                model.getFilteredGradedComponentList().size()));
     }
 
     @Override
@@ -55,13 +73,17 @@ public class FindStudentCommand extends Command {
         }
 
         FindStudentCommand otherFindCommand = (FindStudentCommand) other;
-        return predicate.equals(otherFindCommand.predicate);
+        return studentPredicate.equals(otherFindCommand.studentPredicate)
+                && scorePredicate.equals(otherFindCommand.scorePredicate)
+                && gcPredicate.equals((otherFindCommand.gcPredicate));
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("predicate", predicate)
+                .add("student predicate", studentPredicate)
+                .add("score predicate", scorePredicate)
+                .add("graded component predicate", gcPredicate)
                 .toString();
     }
 }

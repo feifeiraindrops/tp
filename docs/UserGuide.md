@@ -138,23 +138,72 @@ Format: `listStudents [g/TUTORIAL_GRP …]`
 Examples:
 * `listStudents g/02 03`
 
-### Locating students by student ID: `find`
+### Searching students: `findStu`
 
-Retrieves a student's data based on his/her Student ID.
+Retrieves students' data by the given criteria.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `findStu [s/STUDENT_NO] [n/NAME] [e/EMAIL] [g/TUTORIAL_GRP] [t/TAG]`
 
 * The search is case-insensitive. e.g. `a0123456` will match `A0123456`
-* Only the student ID is searched.
+* You can search based on any of the following attributes: name, student number, email, tutorial group or tag.
+* It is allowed to have 0 searching criteria. In this case, this command will simply list all students.
+* For searching based on student ID, tutorial group and tag, it will find the students with exactly the same description
+(case-insensitive). However, for searching based on name and email, it will find the students as long as the
+description contains the searching criteria.
+* For searching with multiple student parameters of the same type, it will find the students who satisfy any of the
+criteria.
+* For searching with student parameters of different types, it will find the students who satisfy all the criteria.
+* For searching with multiple student parameters of different types, it will find the students who satisfy at least one
+criterion for each type.
 
 Examples:
-* `find a0123456` returns the data (including the grades) of the student with student id `a0123456`
+* `find n/Alice n/Bob g/T01` returns the data of the students whose name contains 'Alice' or 'Bob' (case-insensitive)
+while in tutorial group T01.
+
+### Sorting students: `sortStu`
+
+Sorts students' data by the given criteria.
+
+Format: `sortStu [o/SORTING_ORDER] [r/REVERSE]`
+
+* The sorting order keyword must be one of the acceptable description given below: <br>
+"n", "name", "s", "studentId", "studentID", "e", "email", "g", "tutorial", "tut", "tutGroup""ts", "totalScore", 
+"score", "totalscore".
+* The reverse keyword must be one of the acceptable description given below: <br>
+"decreasing", "0", "false", "f" (These 4 keywords have the same effect), "increasing", "1", "true", "t" (These 4 
+keywords have the same effect).
+* It is allowed to omit sorting order and reverse. In this case, the default sorting order is by total score while 
+the default reverse is false (i.e. increasing).
+* This command will only sort the currently displayed students. If you want to sort all students, please use `listStu`
+command in advance.
+
+Examples:
+* `sortStu o/name r/true` returns the sorted students whose names are in descending alphabetical order.
+
+### Calculating overall statistics
+
+Calculates the overall statistics of all students.
+
+Format: `stats [st/STATS] [g/TUTORIAL_GRP]`
+
+* It is allowed to omit `[st/STATS]`. In this case, it will return a summary of all statistics that are currently
+supported.
+* For stats keywords, it must be currently supported. Here is an exhaustive list of currently supported statistical
+measures: mean, standardDeviation, upperQuartile, lowerQuartile, max, min, skewness.
+* It is allowed to have multiple stats keywords, but only allowed to have 0 or 1 tutorial group keywords.
+
+Examples:
+* `stats st/upperQuartile st/lowerQuartile` returns the upper and lower quartile of the overall student grades.
+
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all data from ModuLight.
 
 Format: `clear`
+
+* The clearing process is irreversible.
+
 
 ### Exiting the program : `exit`
 

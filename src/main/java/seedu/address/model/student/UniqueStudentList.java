@@ -6,9 +6,13 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.gradedcomponent.GcName;
+import seedu.address.model.student.exceptions.DuplicateScoresException;
+import seedu.address.model.studentscore.StudentScore;
 
 
 /**
@@ -119,11 +123,9 @@ public class UniqueStudentList implements Iterable<Student> {
                     s1Value = s1.getTutorial().toString();
                     s2Value = s2.getTutorial().toString();
                     break;
-                case "ts":
-                    s1TotalScore = s1.getTotalScore();
-                    s2TotalScore = s2.getTotalScore();
-                    s1Value = s1.getStudentId().toString();
-                    s2Value = s2.getStudentId().toString();
+                case "o":
+                    s1Value = String.valueOf(s1.getTotalScore());
+                    s2Value = String.valueOf(s2.getTotalScore());
                     break;
                 default:
                     s1Value = s1.getStudentId().toString();
@@ -148,13 +150,48 @@ public class UniqueStudentList implements Iterable<Student> {
     }
 
     /**
+     * Sorts the Student list based on the performance in a graded component.
+     */
+    public void sortScore(GcName gcName, boolean reverse) {
+        internalList.sort(new Comparator<Student>() {
+            public int compare(Student s1, Student s2) {
+                List<Float> s1MatchingValue = s1.getScores().stream()
+                        .filter(studentScore -> studentScore.getGcName().equals(gcName))
+                        .map(StudentScore::getScore).collect(Collectors.toList());
+                List<Float> s2MatchingValue = s2.getScores().stream()
+                        .filter(studentScore -> studentScore.getGcName().equals(gcName))
+                        .map(StudentScore::getScore).collect(Collectors.toList());
+                if (s1MatchingValue.size() > 1) {
+                    DuplicateScoresException exc = new DuplicateScoresException(gcName, s1);
+                    throw new RuntimeException(exc.getMessage(), exc);
+                } else if (s2MatchingValue.size() > 1) {
+                    DuplicateScoresException exc = new DuplicateScoresException(gcName, s2);
+                    throw new RuntimeException(exc.getMessage(), exc);
+                }
+                Float s1Value = 0F;
+                Float s2Value = 0F;
+                if (s1MatchingValue.size() == 1) {
+                    s1Value = s1MatchingValue.get(0);
+                }
+                if (s2MatchingValue.size() == 1) {
+                    s2Value = s2MatchingValue.get(0);
+                }
+                if (!reverse) {
+                    return s1Value.compareTo(s2Value);
+                } else {
+                    return s2Value.compareTo(s1Value);
+                }
+            }
+        });
+    }
+
+    /**
      * Get size of the List.
      * @return the size.
      */
     public int getSize() {
         return this.internalList.size();
     }
-
 
     public void setStudents(UniqueStudentList replacement) {
         requireNonNull(replacement);

@@ -164,8 +164,13 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Predicate<Student> getCurrentPredicate() {
+    public Predicate<Student> getCurrentStudentsPredicate() {
         return (Predicate<Student>) filteredStudentList.getPredicate();
+    }
+
+    @Override
+    public Predicate<StudentScore> getCurrentScoresPredicate() {
+        return (Predicate<StudentScore>) filteredStudentScoreList.getPredicate();
     }
 
     @Override
