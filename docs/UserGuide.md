@@ -308,9 +308,10 @@ Sorts students' data by the given criteria.
 
 Format: `sortStu [o/SORTING_ORDER] [r/REVERSE]`
 
-* The sorting order keyword must be one of the acceptable description given below: <br>
-"n", "name", "s", "studentId", "studentID", "e", "email", "g", "tutorial", "tut", "tutGroup""ts", "totalScore", 
-"score", "totalscore".
+* The sorting order keyword must be one of the acceptable description given below: <br> "n",
+  "name", "s", "studentId", "studentID", "e", "email", "g", "tutorial", "tut", 
+  "tutGroup", "ts", 
+  "totalScore", "totalscore", "score".
 * The reverse keyword must be one of the acceptable description given below: <br>
 "decreasing", "0", "false", "f" (These 4 keywords have the same effect), "increasing", "1", "true", "t" (These 4 
 keywords have the same effect).
@@ -429,17 +430,6 @@ ModuLight data is saved in the hard disk automatically after any command that ch
 
 There is no need to manually load data stored on the hard disc. It will be available automatically everytime the program starts.
 
-### Editing the data file
-
-ModuLight data are saved automatically as a set of 3 JSON files `[JAR file location]/data/studentBook.json`,
-`[JAR file location]/data/gradedComponentBook.json`, `[JAR file location]/data/studentScoreBook.json`, 
-Advanced users are welcome to update data directly by editing that data file.
-
-<box type="warning" seamless>
-
-**Caution:**
-If your changes to the data file makes its format invalid, ModuLight will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.
-</box>
 
 ### Archiving data files `[coming in v2.0]`
 
