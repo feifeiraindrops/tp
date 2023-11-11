@@ -1,14 +1,66 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.logic.commands.CommandStudentScoreTestUtil.VALID_GCNAME_AMY;
+import static seedu.address.logic.commands.CommandStudentScoreTestUtil.VALID_GCNAME_JAMES;
+import static seedu.address.logic.commands.CommandStudentScoreTestUtil.VALID_SCORE_AMY;
+import static seedu.address.logic.commands.CommandStudentScoreTestUtil.VALID_SCORE_JAMES;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.studentscore.StudentScore;
+import seedu.address.testutil.StudentScoreBuilder;
 
 /**
  * A utility class for test cases in command execution.
  */
 public class CommandTestUtil {
+    public static final String VALID_NAME_AMY = "Amy Bee";
+    public static final String VALID_NAME_JAMES = "James Choo";
+    public static final String VALID_SID_AMY = "A2233445R";
+    public static final String VALID_SID_JAMES = "A7654321Y";
+    public static final String VALID_TG_AMY = "T01";
+    public static final String VALID_TG_JAMES = "T02";
+    public static final String VALID_EMAIL_AMY = "amy@example.com";
+    public static final String VALID_EMAIL_JAMES = "JAMES@example.com";
+    public static final String VALID_TAG_TA = "TA";
+    public static final String VALID_TAG_MAKEUP_EXAM = "makeup";
+
+    public static final StudentScore VALID_STUDENT_SCORE_AMY = new StudentScoreBuilder()
+            .withScore(VALID_SCORE_AMY).withStudentId(VALID_SID_AMY).withGcName(VALID_GCNAME_AMY).build();
+    public static final StudentScore VALID_STUDENT_SCORE_JAMES = new StudentScoreBuilder()
+            .withScore(VALID_SCORE_JAMES).withStudentId(VALID_SID_JAMES).withGcName(VALID_GCNAME_JAMES).build();
+
+    public static final List<String> EMPTY_ID_KEYWORDS = new ArrayList<>();
+    public static final List<String> EMPTY_NAME_KEYWORDS = new ArrayList<>();
+    public static final List<String> EMPTY_EMAIL_KEYWORDS = new ArrayList<>();
+    public static final List<String> EMPTY_TG_KEYWORDS = new ArrayList<>();
+    public static final List<String> EMPTY_TAG_KEYWORDS = new ArrayList<>();
+    public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
+    public static final String NAME_DESC_JAMES = " " + PREFIX_NAME + VALID_NAME_JAMES;
+    public static final String SID_DESC_AMY = " " + PREFIX_PHONE + VALID_SID_AMY;
+    public static final String SID_DESC_JAMES = " " + PREFIX_PHONE + VALID_SID_JAMES;
+    public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
+    public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_TA;
+    public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_MAKEUP_EXAM;
+
+    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
+    public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
+    public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "JAMES!yahoo"; // missing '@' symbol
+    public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
+    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+
+    public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
+    public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
+
     //@@author siqirua-reused
     //Inspired by
     // https://github.com/AY2324S1-CS2103T-F10-3/tp/blob/master/src/test/java/seedu/address/testutil/TestUtil.java

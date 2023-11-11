@@ -257,7 +257,7 @@ criterion for each type.
 s/A00000Y, no students will be found since this is not a substring of any valid student number.
 
 Examples:
-* `findStu n/Alice n/Bob g/T01` returns the data of the students whose name contains 'Alice' or 'Bob' (case-insensitive)
+* `findStu n/Alice n/JAMES g/T01` returns the data of the students whose name contains 'Alice' or 'JAMES' (case-insensitive)
 while in tutorial group T01.
 
 ### Find students : `findComp`
@@ -471,7 +471,7 @@ _Details coming soon ..._
 | **Delete a student**                                | `deleteStu INDEX` <br> e.g., `deleteStu 2`                                                                                            |
 | **Delete a graded component**                       | `deleteComp INDEX` <br> e.g., `deleteComp 1`                                                                                          |
 | **Delete everything**                               | `clearAll`                                                                                                                            |
-| **Find a student**                                  | `findStu [s/STUDENT_NO] [n/NAME] [e/EMAIL] [g/TUTORIAL_GRP] [t/TAG]`<br> e.g., `findStu n/Alice n/Bob g/T01`                          |
+| **Find a student**                                  | `findStu [s/STUDENT_NO] [n/NAME] [e/EMAIL] [g/TUTORIAL_GRP] [t/TAG]`<br> e.g., `findStu n/Alice n/JAMES g/T01`                          |
 | **Find a graded component**                         | `findComp c/COMP_NAME`<br> e.g., `findComp c/Midterms`                                                                                |
 | **Find a student score**                            | `findScore  [s/STUDENT_NO] [n/NAME] [e/EMAIL] [g/TUTORIAL_GRP] [c/COMP_NAME][x/comments][t/tags]...`<br> e.g., `findScore c/Midterms` |
 | **List all students, scores and graded components** | `listAll`                                                                                                                             |

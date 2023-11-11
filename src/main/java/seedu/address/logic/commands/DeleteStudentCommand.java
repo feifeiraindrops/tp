@@ -18,7 +18,7 @@ import seedu.address.model.studentscore.model.StudentScoreBook;
 
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes a Student identified using it's displayed index from the address book.
  */
 public class DeleteStudentCommand extends Command {
     public static final String COMMAND_WORD = "deleteStu";
@@ -28,7 +28,7 @@ public class DeleteStudentCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Student: %1$s";
+    public static final String MESSAGE_DELETE_STUDENT_SUCCESS = "Deleted Student: %1$s";
 
     private final Index targetIndex;
 
@@ -61,7 +61,7 @@ public class DeleteStudentCommand extends Command {
                 studentScoreBook.removeStudentScore(studentScoreList.get(i));
             }
         }
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(studentToDelete)));
+        return new CommandResult(String.format(MESSAGE_DELETE_STUDENT_SUCCESS, Messages.format(studentToDelete)));
     }
 
     @Override

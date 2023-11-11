@@ -1,4 +1,4 @@
-package seedu.address.model.student.exceptions;
+package seedu.address.model.studentscore.exceptions;
 
 import seedu.address.model.gradedcomponent.GcName;
 import seedu.address.model.student.Student;

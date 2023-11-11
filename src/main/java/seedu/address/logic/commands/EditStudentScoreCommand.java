@@ -45,7 +45,7 @@ public class EditStudentScoreCommand extends Command {
             + PREFIX_MARKS + "35.4 "
             + PREFIX_COMMENT + "Good JOB!";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited student score: %1$s";
+    public static final String MESSAGE_EDIT_SCORE_SUCCESS = "Edited student score: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_STUDENT_SCORE = "This studentScore already "
             + "exists in the address book.";
@@ -118,7 +118,7 @@ public class EditStudentScoreCommand extends Command {
         studentBook.setStudent(student, student);
         gradedComponentBook.setGradedComponent(gc, gc);
 
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS,
+        return new CommandResult(String.format(MESSAGE_EDIT_SCORE_SUCCESS,
                 Messages.formatStudentScore(editedStudentScore)));
     }
 

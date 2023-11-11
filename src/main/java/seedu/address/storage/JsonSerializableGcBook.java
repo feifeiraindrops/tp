@@ -25,7 +25,7 @@ public class JsonSerializableGcBook {
     private final List<JsonAdaptedGradedComponent> gradedComponents = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableGcBook} with the given persons.
+     * Constructs a {@code JsonSerializableGcBook} with the given Students.
      */
     @JsonCreator
     public JsonSerializableGcBook(@JsonProperty("gradedComponents") List<JsonAdaptedGradedComponent>

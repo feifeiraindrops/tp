@@ -42,7 +42,7 @@ public class AddStudentCommand extends Command {
             + PREFIX_TAG + "Potential TA";
 
     public static final String MESSAGE_SUCCESS = "New student added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in the database";
+    public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the database";
 
     private Student toAdd;
 
@@ -55,14 +55,14 @@ public class AddStudentCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException, RuntimeException {
         requireNonNull(model);
 
         GradedComponentBook gradedComponentBook = model.getGradedComponentBook();
         StudentBook studentBook = model.getStudentBook();
 
         if (studentBook.hasStudent(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
         }
 
         model.getStudentBook().addStudent(toAdd);

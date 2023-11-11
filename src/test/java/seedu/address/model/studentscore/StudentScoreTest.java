@@ -9,9 +9,9 @@ import static seedu.address.logic.commands.CommandStudentScoreTestUtil.VALID_COM
 import static seedu.address.logic.commands.CommandStudentScoreTestUtil.VALID_GCNAME_AMY;
 import static seedu.address.logic.commands.CommandStudentScoreTestUtil.VALID_GCNAME_JAMES;
 import static seedu.address.logic.commands.CommandStudentScoreTestUtil.VALID_SCORE_AMY;
-import static seedu.address.logic.commands.CommandStudentScoreTestUtil.VALID_SID_AMY;
-import static seedu.address.logic.commands.CommandStudentScoreTestUtil.VALID_SID_JAMES;
 import static seedu.address.logic.commands.CommandStudentScoreTestUtil.VALID_TAG_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SID_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SID_JAMES;
 
 import org.junit.jupiter.api.Test;
 

@@ -45,7 +45,7 @@ public class EditGradedComponentCommand extends Command {
             + PREFIX_COMPONENT_NAME + "Midterm Project "
             + PREFIX_WEIGHTAGE + "20";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited graded component: %1$s";
+    public static final String MESSAGE_EDIT_COMPONENT_SUCCESS = "Edited graded component: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_GRADED_COMPONENT = "This graded component already "
             + "exists in the address book.";
@@ -100,7 +100,7 @@ public class EditGradedComponentCommand extends Command {
             }
         }
 
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS,
+        return new CommandResult(String.format(MESSAGE_EDIT_COMPONENT_SUCCESS,
                 Messages.formatGradedComponent(editedGradedComponent)));
     }
 

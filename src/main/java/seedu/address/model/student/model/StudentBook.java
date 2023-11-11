@@ -10,6 +10,7 @@ import seedu.address.model.gradedcomponent.GcName;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.StudentId;
 import seedu.address.model.student.UniqueStudentList;
+import seedu.address.model.student.exceptions.DuplicateStudentException;
 
 /**
  * Wraps all data at the address-book level
@@ -73,7 +74,7 @@ public class StudentBook implements ReadOnlyStudentBook {
      * Adds a student to the address book.
      * The student must not already exist in the address book.
      */
-    public void addStudent(Student p) {
+    public void addStudent(Student p) throws DuplicateStudentException {
         students.add(p);
     }
 

@@ -24,7 +24,7 @@ import seedu.address.model.tag.Tag;
  * Jackson-friendly version of {@link Student}.
  */
 public class JsonAdaptedStudent {
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Student's %s field is missing!";
 
     private final String studentId;
     private final String studentName;
@@ -34,7 +34,7 @@ public class JsonAdaptedStudent {
     private final String studentGrade;
 
     /**
-     * Constructs a {@code JsonAdaptedStudent} with the given person details.
+     * Constructs a {@code JsonAdaptedStudent} with the given Student details.
      */
     @JsonCreator
     public JsonAdaptedStudent(@JsonProperty("studentId") String studentId,
@@ -68,16 +68,16 @@ public class JsonAdaptedStudent {
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Student} object.
+     * Converts this Jackson-friendly adapted Student object into the model's {@code Student} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted Student.
      */
     public Student toModelType() throws IllegalValueException {
         if (studentId == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                 StudentId.class.getSimpleName()));
         }
-        if (!StudentId.isValidName(studentId)) {
+        if (!StudentId.isValidSid(studentId)) {
             throw new IllegalValueException(StudentId.MESSAGE_CONSTRAINTS);
         }
         final StudentId modelStudentId = new StudentId(studentId);

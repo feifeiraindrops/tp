@@ -85,10 +85,10 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String email} into an {@code Email}.
+     * Parses a {@code String StudentEmail} into an {@code StudentEmail}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code email} is invalid.
+     * @throws ParseException if the given {@code StudentEmail} is invalid.
      */
     public static StudentEmail parseEmail(String email) throws ParseException {
         requireNonNull(email);

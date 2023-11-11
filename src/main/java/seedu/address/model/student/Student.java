@@ -141,7 +141,7 @@ public class Student {
         }
 
         return otherStudent != null
-                && otherStudent.getStudentId().equals(getStudentId());
+                && otherStudent.getStudentId().equals(getStudentId()) && otherStudent.getName().equals(getName());
     }
     /**
      * Returns true if both students have the same identity and data fields.
@@ -158,8 +158,11 @@ public class Student {
             return false;
         }
 
-        Student otherPerson = (Student) other;
-        return sid.equals(otherPerson.sid);
+        Student otherStudent = (Student) other;
+        return sid.equals(otherStudent.sid) && name.equals(otherStudent.name) && email.equals(otherStudent.email)
+                && tg.equals(otherStudent.tg) && tags.equals(otherStudent.tags)
+                && scoreList.equals(otherStudent.scoreList);
+
     }
 
     @Override
@@ -171,8 +174,8 @@ public class Student {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("student id", sid)
                 .add("name", name)
+                .add("student id", sid)
                 .add("email", email)
                 .add("tutorial group", tg)
                 .add("tags", tags)

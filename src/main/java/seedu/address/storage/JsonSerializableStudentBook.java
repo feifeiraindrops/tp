@@ -20,12 +20,12 @@ import seedu.address.model.student.model.StudentBook;
 @JsonRootName(value = "studentbook")
 public class JsonSerializableStudentBook {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_STUDENT = "Students list contains duplicate Student(s).";
 
     private final List<JsonAdaptedStudent> students = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableStudentBook} with the given persons.
+     * Constructs a {@code JsonSerializableStudentBook} with the given Students.
      */
     @JsonCreator
     public JsonSerializableStudentBook(@JsonProperty("students") List<JsonAdaptedStudent> students) {
@@ -51,7 +51,7 @@ public class JsonSerializableStudentBook {
         for (JsonAdaptedStudent jsonAdaptedStudent : students) {
             Student student = jsonAdaptedStudent.toModelType();
             if (studentBook.hasStudent(student)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+                throw new IllegalValueException(MESSAGE_DUPLICATE_STUDENT);
             }
             studentBook.addStudent(student);
         }

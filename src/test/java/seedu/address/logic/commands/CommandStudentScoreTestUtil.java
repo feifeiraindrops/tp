@@ -2,6 +2,8 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SID_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SID_JAMES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPONENT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MARKS;
@@ -25,8 +27,6 @@ import seedu.address.testutil.EditStudentScoreDescriptorBuilder;
  * Contains helper method for testing Student Score related command.
  */
 public class CommandStudentScoreTestUtil {
-    public static final String VALID_SID_JAMES = "A1122334Y";
-    public static final String VALID_SID_AMY = "A2233445R";
     public static final String VALID_GCNAME_JAMES = "CA2";
     public static final String VALID_GCNAME_AMY = "Finals";
     public static final float VALID_SCORE_JAMES = 2;
@@ -103,7 +103,7 @@ public class CommandStudentScoreTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the address book, filtered person list and selected person in {@code actualModel} remain unchanged
+     * - the address book, filtered Student list and selected Student in {@code actualModel} remain unchanged
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
@@ -116,7 +116,7 @@ public class CommandStudentScoreTestUtil {
         assertEquals(expectedFilteredList, actualModel.getFilteredStudentScoreList());
     }
     /**
-     * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
+     * Updates {@code model}'s filtered list to show only the Student at the given {@code targetIndex} in the
      * {@code model}'s address book.
      */
     public static void showStudentScoreAtIndex(Model model, Index targetIndex) {
