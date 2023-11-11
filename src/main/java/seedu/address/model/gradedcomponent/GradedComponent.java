@@ -54,8 +54,8 @@ public class GradedComponent {
         return weightage;
     }
     /**
-     * Returns true if both Students have the same name.
-     * This defines a weaker notion of equality between two Students.
+     * Returns true if both persons have the same name.
+     * This defines a weaker notion of equality between two persons.
      */
 
     public List<StudentScore> getScores() {
@@ -111,8 +111,8 @@ public class GradedComponent {
     }
 
     /**
-     * Returns true if both Students have the same name.
-     * This defines a weaker notion of equality between two Students.
+     * Returns true if both persons have the same name.
+     * This defines a weaker notion of equality between two persons.
      */
     public boolean isSameGc(GradedComponent otherGc) {
         if (otherGc == this) {
@@ -123,8 +123,8 @@ public class GradedComponent {
                 && otherGc.name.equals(name);
     }
     /**
-     * Returns true if both Students have the same identity and data fields.
-     * This defines a stronger notion of equality between two Students.
+     * Returns true if both persons have the same identity and data fields.
+     * This defines a stronger notion of equality between two persons.
      */
     @Override
     public boolean equals(Object other) {

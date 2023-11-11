@@ -25,11 +25,11 @@ public class JsonSerializableGcBook {
     private final List<JsonAdaptedGradedComponent> gradedComponents = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableGcBook} with the given Students.
+     * Constructs a {@code JsonSerializableGcBook} with the given persons.
      */
     @JsonCreator
     public JsonSerializableGcBook(@JsonProperty("gradedComponents") List<JsonAdaptedGradedComponent>
-        gradedComponents) {
+                                          gradedComponents) {
         this.gradedComponents.addAll(gradedComponents);
     }
 
@@ -40,7 +40,7 @@ public class JsonSerializableGcBook {
      */
     public JsonSerializableGcBook(ReadOnlyGradedComponentBook source) {
         gradedComponents.addAll(source.getGradedComponentList().stream().map(JsonAdaptedGradedComponent::new)
-            .collect(Collectors.toList()));
+                .collect(Collectors.toList()));
     }
 
     /**

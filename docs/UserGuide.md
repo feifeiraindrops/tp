@@ -6,7 +6,7 @@ pageNav: 3
 
 # User Guide: ModuLight
 
-ModuLight is a **desktop app** built for **professors from National University of Singapore to manage students and 
+ModuLight is a **desktop app** built for **professors from National University of Singapore to manage students and
 assessments** for a single module.
 
 Here’s an overview of how Modulight can help you to streamline your module management process:
@@ -14,8 +14,8 @@ Here’s an overview of how Modulight can help you to streamline your module man
 * Calculate statistics on cohort performance for assessments and autograde based on customised parameters.
 * Track qualitative information about your students and assessments using tags and comments.
 
-Furthermore, we believe that module management should be **efficient**. Therefore, Modulight is **optimized for use 
-via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can 
+Furthermore, we believe that module management should be **efficient**. Therefore, Modulight is **optimized for use
+via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can
 type fast, ModuLight can get your student grading tasks done faster than traditional GUI apps.
 
 
@@ -32,7 +32,7 @@ type fast, ModuLight can get your student grading tasks done faster than traditi
 
 3. Copy the file to the folder you want to use as the _home folder_ for your ModuLight.
 
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar ModuLight.jar` 
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar ModuLight.jar`
    command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui_overview.png)
@@ -40,12 +40,12 @@ type fast, ModuLight can get your student grading tasks done faster than traditi
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * `addStu s/A1234567X e/e0725856@u.nus.edu g/T02 n/Jamus Lim` : Adds a Student named Jamus Lim.
+  * `addStu s/A1234567X e/e0725856@u.nus.edu g/T02 n/Jamus Lim` : Adds a Student named Jamus Lim.
 
-   * `addComp c/Midterm Exam w/25 mm/75` : Adds a Graded Component named Midterm Exam.
+  * `addComp c/Midterm Exam w/25 mm/75` : Adds a Graded Component named Midterm Exam.
 
-   * `editStuScore s/A1234567X c/Midterms m/75` : Edits the score of the Midterm Component for the student with the student id A1234567X.
-   
+  * `editStuScore s/A1234567X c/Midterms m/75` : Edits the score of the Midterm Component for the student with the student id A1234567X.
+
 
 6. Refer to the [Features](#features) below for details of each command.
 
@@ -112,13 +112,13 @@ The following section gives an overview of the parameters used for the commands 
 
 **Notes on Graded Component and Student Score parameters for score calculation**<br>
 
-* The maximum marks of a graded component and marks of a student score are both absolute values and are used together to 
-determine the relative performance of a student for a component. For instance, if the maximum marks for a component Midterms is 50, and the marks for the student is 35, then the student scored 35/50 =70% on this graded component.
+* The maximum marks of a graded component and marks of a student score are both absolute values and are used together to
+  determine the relative performance of a student for a component. For instance, if the maximum marks for a component Midterms is 50, and the marks for the student is 35, then the student scored 35/50 =70% on this graded component.
 
-* The weightage of a graded component is used to determine its contribution to a student’s overall score, and is calculated 
-relative to the sum of all other component weightages. For instance, if there are only 2 components in the system currently, 
-and component A has weightage 30, and component B weightage 20, then component A currently represents 20/(20+30) = 60% of 
-the student’s overall score. This is modified as components are added and removed. Note that the total weightage of all graded components should be less than or equal to 100.
+* The weightage of a graded component is used to determine its contribution to a student’s overall score, and is calculated
+  relative to the sum of all other component weightages. For instance, if there are only 2 components in the system currently,
+  and component A has weightage 30, and component B weightage 20, then component A currently represents 20/(20+30) = 60% of
+  the student’s overall score. This is modified as components are added and removed. Note that the total weightage of all graded components should be less than or equal to 100.
 
 * If a graded component has a maximum mark of 0, the relative score for any associated student scores will be 0.
 
@@ -153,7 +153,7 @@ Here is a summary of each GUI component within ModuLight.
 **Notes about the command format:**<br>
 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
-</box>
+  </box>
 
 ### Viewing help : `help`
 
@@ -172,7 +172,7 @@ Format: `addStu s/STUDENT_NO n/NAME e/EMAIL [g/TUTORIAL_GRP] [t/tags…]`
 
 * it is allowed to omit the tutorial group. In this case, the student's tutorial group will be T00 by default.
 
-Examples: 
+Examples:
 * `addStu s/A1234567Y n/Andy Ong g/T03 e/andy_ong@u.nus.edu` Adds a student with student number A1234567Y, name Andy Ong, with email andy_ong@u.nus.edu belonging to tutorial group T03 to the database.
 
 ### Edit a student : `editStu`
@@ -216,7 +216,7 @@ Examples: `editComp 4 c/Midterm Exam mm/55` edits the fourth graded component in
 
 ### Delete a graded component: `deleteComp`
 
-Deletes an existing graded component in the database, based on the 1-based index of the graded component shown in the Graded Components list. 
+Deletes an existing graded component in the database, based on the 1-based index of the graded component shown in the Graded Components list.
 If successful, an acknowledgement message will be shown in the output box and data is saved. Otherwise, a failure message is shown instead specifying the cause of failure.
 
 The index provided must be more than 0 and not exceed the number of graded components displayed in the Graded Components list.
@@ -246,22 +246,22 @@ Format: `findStu [s/STUDENT_NO] [n/NAME] [e/EMAIL] [g/TUTORIAL_GRP] [t/TAG]`
 * You can search based on any of the following attributes: name, student number, email, tutorial group or tag.
 * It is allowed to have 0 searching criteria. In this case, this command will simply list all students.
 * For searching based on tutorial group and tag, it will find the students with exactly the same description
-(case-insensitive). However, for searching based on student ID, name and email, it will find the students as long as the
-description contains the searching keyword.
+  (case-insensitive). However, for searching based on student ID, name and email, it will find the students as long as the
+  description contains the searching keyword.
 * For searching with multiple student parameters of the same type, it will find the students who satisfy any of the
-criteria.
+  criteria.
 * For searching with student parameters of different types, it will find the students who satisfy all the criteria.
 * For searching with multiple student parameters of different types, it will find the students who satisfy at least one
-criterion for each type.
-* If a input of the incorrect format is given, there might be no students found. For example, if you search findStu 
-s/A00000Y, no students will be found since this is not a substring of any valid student number.
+  criterion for each type.
+* If a input of the incorrect format is given, there might be no students found. For example, if you search findStu
+  s/A00000Y, no students will be found since this is not a substring of any valid student number.
 
 Examples:
-* `findStu n/Alice n/JAMES g/T01` returns the data of the students whose name contains 'Alice' or 'JAMES' (case-insensitive)
-while in tutorial group T01.
+* `findStu n/Alice n/Bob g/T01` returns the data of the students whose name contains 'Alice' or 'Bob' (case-insensitive)
+  while in tutorial group T01.
 
 ### Find students : `findComp`
-Shows all students who match the given search keyword of the specific parameter. All the relevant student scores and 
+Shows all students who match the given search keyword of the specific parameter. All the relevant student scores and
 all graded components will be displayed as well.
 
 Format: `findComp c/COMP_NAME`
@@ -272,7 +272,7 @@ Format: `findComp c/COMP_NAME`
 * For searching with multiple student parameters of the same type, it will find the students who satisfy any of the
   criteria.
 
-Example: `findComp c/midterm` lists all graded component contains the string midterm  (and their associated scores). 
+Example: `findComp c/midterm` lists all graded component contains the string midterm  (and their associated scores).
 All graded students will be shown since they are relevant.
 
 ### Find students : `findScore`
@@ -309,16 +309,16 @@ Sorts students' data by the given criteria.
 Format: `sortStu [o/SORTING_ORDER] [r/REVERSE]`
 
 * The sorting order keyword must be one of the acceptable description given below: <br> "n",
-  "name", "s", "studentId", "studentID", "e", "email", "g", "tutorial", "tut", 
-  "tutGroup", "ts", 
+  "name", "s", "studentId", "studentID", "e", "email", "g", "tutorial", "tut",
+  "tutGroup", "ts",
   "totalScore", "totalscore", "score".
 * The reverse keyword must be one of the acceptable description given below: <br>
-"decreasing", "0", "false", "f" (These 4 keywords have the same effect), "increasing", "1", "true", "t" (These 4 
-keywords have the same effect).
-* It is allowed to omit sorting order and reverse. In this case, the default sorting order is by total score while 
-the default reverse is false (i.e. increasing).
+  "decreasing", "0", "false", "f" (These 4 keywords have the same effect), "increasing", "1", "true", "t" (These 4
+  keywords have the same effect).
+* It is allowed to omit sorting order and reverse. In this case, the default sorting order is by total score while
+  the default reverse is false (i.e. increasing).
 * This command will only sort the currently displayed students. If you want to sort all students, please use `listStu`
-command in advance.
+  command in advance.
 
 Examples:
 * `sortStu o/name r/true` returns the sorted students whose names are in descending alphabetical order.
@@ -357,7 +357,7 @@ Format: `autoGrade ag/METHOD pg/PASSING_VALUE`
   * Each bracket represents the boundary value for the grade.
     * For `percentile` method, it is the statistical percentile value.
     * For `absolute` method, it is the total score.
-  * It is **not** compulsory to fill all the `PASSING_VALUE`, but such approach would make students below the lowest given passing value to be graded `F`. 
+  * It is **not** compulsory to fill all the `PASSING_VALUE`, but such approach would make students below the lowest given passing value to be graded `F`.
   * Example: `pg/90 80 65 40 30`. This would correspond to:
     * Value `90` given to `A+`
     * Value `80` given to `A`
@@ -365,7 +365,7 @@ Format: `autoGrade ag/METHOD pg/PASSING_VALUE`
     * Value `40` given to `B+`
     * Value `30` given to `B`
     * Any Value below `30` will be given `F`
-Example:
+      Example:
 * `autoGrade ag/absolute pg/95 80 70 55 40 20`. This would automatically grade student by using absolute grade threshold. Student with total score `95%` above will be given `A+`, total score below `95%` and `90` above will be given `A`, and so on, while below `20%` will be given `F`.
 
 ### Calculating overall statistics: `stats`
@@ -375,18 +375,18 @@ Calculates the overall statistics of all students.
 Format: `stats [st/STATS] [g/TUTORIAL_GRP]`
 
 * It is allowed to omit `[st/STATS]`. In this case, it will return a summary of all statistics that are currently
-supported.
+  supported.
 * For stats keywords, it must be currently supported. Here is an exhaustive list of currently supported statistical
-measures: mean, standardDeviation, upperQuartile, lowerQuartile, max, min, skewness.
+  measures: mean, standardDeviation, upperQuartile, lowerQuartile, max, min, skewness.
 * For the calculation of upper and lower quartile, we use Method 4 introduced in [Wikipedia](https://en.wikipedia.org/wiki/Quartile).
 * If there is only valid score matching the criteria, skewness will be displayed as `NaN` because skewness for one data
-is meaningless.
+  is meaningless.
 * It is allowed to have multiple stats keywords, but only allowed to have 0 or 1 tutorial group keywords.
 
 Examples:
 * `stats st/upperQuartile st/lowerQuartile` returns the upper and lower quartile of the overall student grades.
 
-### Calculating statistics of a graded component : `compStats` 
+### Calculating statistics of a graded component : `compStats`
 
 Calculates the statistics of all students of a specific graded component.
 
@@ -396,16 +396,16 @@ Format: `compStats c/COMP_NAME [st/STATS] [g/TUTORIAL_GRP]`
   supported.
 * For stats keywords, it must be currently supported. Here is an exhaustive list of currently supported statistical
   measures: mean, standardDeviation, upperQuartile, lowerQuartile, max, min, skewness.
-* For the calculation of upper and lower quartile, we use Method 4 introduced 
-in [Wikipedia](https://en.wikipedia.org/wiki/Quartile).
+* For the calculation of upper and lower quartile, we use Method 4 introduced
+  in [Wikipedia](https://en.wikipedia.org/wiki/Quartile).
 * If there is only valid score matching the criteria, skewness will be displayed as `NaN` because skewness for one data
-is meaningless.
-* It is allowed to have multiple stats keywords, but only allowed to have 0 or 1 tutorial group keyword and component 
-name keyword.
+  is meaningless.
+* It is allowed to have multiple stats keywords, but only allowed to have 0 or 1 tutorial group keyword and component
+  name keyword.
 
 Examples:
-* `compStats st/upperQuartile st/lowerQuartile c/Midterm` returns the upper and lower quartile of the 
-student grades in Midterm.
+* `compStats st/upperQuartile st/lowerQuartile c/Midterm` returns the upper and lower quartile of the
+  student grades in Midterm.
 
 ### Clearing all entries : `clearAll`
 
@@ -461,7 +461,7 @@ _Details coming soon ..._
 | **Delete a student**                                | `deleteStu INDEX` <br> e.g., `deleteStu 2`                                                                                            |
 | **Delete a graded component**                       | `deleteComp INDEX` <br> e.g., `deleteComp 1`                                                                                          |
 | **Delete everything**                               | `clearAll`                                                                                                                            |
-| **Find a student**                                  | `findStu [s/STUDENT_NO] [n/NAME] [e/EMAIL] [g/TUTORIAL_GRP] [t/TAG]`<br> e.g., `findStu n/Alice n/JAMES g/T01`                          |
+| **Find a student**                                  | `findStu [s/STUDENT_NO] [n/NAME] [e/EMAIL] [g/TUTORIAL_GRP] [t/TAG]`<br> e.g., `findStu n/Alice n/Bob g/T01`                          |
 | **Find a graded component**                         | `findComp c/COMP_NAME`<br> e.g., `findComp c/Midterms`                                                                                |
 | **Find a student score**                            | `findScore  [s/STUDENT_NO] [n/NAME] [e/EMAIL] [g/TUTORIAL_GRP] [c/COMP_NAME][x/comments][t/tags]...`<br> e.g., `findScore c/Midterms` |
 | **List all students, scores and graded components** | `listAll`                                                                                                                             |

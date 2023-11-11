@@ -25,7 +25,7 @@ public class JsonSerializableStudentBook {
     private final List<JsonAdaptedStudent> students = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableStudentBook} with the given Students.
+     * Constructs a {@code JsonSerializableStudentBook} with the given students.
      */
     @JsonCreator
     public JsonSerializableStudentBook(@JsonProperty("students") List<JsonAdaptedStudent> students) {

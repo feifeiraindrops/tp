@@ -15,7 +15,7 @@ import javafx.collections.ObservableList;
  * A student score is considered unique by comparing using {@code StudentScore#isSameScore(StudentScore)}. As such,
  * adding and updating of student scores uses StudentScore#isSameScore(StudentScore) for equality to
  * ensure that the student score being added or updated is unique in terms of identity in the UniqueScoreList.
- * However, the removal of a Student uses StudentScore#equals(Object) to ensure that the Student with exactly
+ * However, the removal of a person uses StudentScore#equals(Object) to ensure that the person with exactly
  * the same fields will be removed.
  *
  * Supports a minimal set of list operations.
@@ -149,9 +149,9 @@ public class UniqueStudentScoreList implements Iterable<StudentScore> {
             return false;
         }
 
-        seedu.address.model.studentscore.UniqueStudentScoreList otherUniqueStudentList =
+        seedu.address.model.studentscore.UniqueStudentScoreList otherUniquePersonList =
                 (seedu.address.model.studentscore.UniqueStudentScoreList) other;
-        return internalList.equals(otherUniqueStudentList.internalList);
+        return internalList.equals(otherUniquePersonList.internalList);
     }
 
     @Override
@@ -165,7 +165,7 @@ public class UniqueStudentScoreList implements Iterable<StudentScore> {
     }
 
     /**
-     * Returns true if {@code Students} contains only unique student scores.
+     * Returns true if {@code persons} contains only unique student scores.
      */
     private boolean studentScoresAreUnique(List<StudentScore> scores) {
         for (int i = 0; i < scores.size() - 1; i++) {

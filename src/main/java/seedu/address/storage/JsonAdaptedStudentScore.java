@@ -37,7 +37,7 @@ public class JsonAdaptedStudentScore {
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonAdaptedStudent} with the given Student details.
+     * Constructs a {@code JsonAdaptedStudent} with the given person details.
      */
     @JsonCreator
     public JsonAdaptedStudentScore(@JsonProperty("studentId") String studentId,
@@ -74,14 +74,14 @@ public class JsonAdaptedStudentScore {
     }
 
     /**
-     * Converts this Jackson-friendly adapted Student object into the model's {@code Student} object.
+     * Converts this Jackson-friendly adapted person object into the model's {@code Student} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted Student.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public StudentScore toModelType() throws IllegalValueException {
         if (studentId == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                StudentId.class.getSimpleName()));
+                    StudentId.class.getSimpleName()));
         }
         if (!StudentId.isValidSid(studentId)) {
             throw new IllegalValueException(StudentId.MESSAGE_CONSTRAINTS);

@@ -341,7 +341,7 @@
     -fx-text-fill: white;
 }
 
-#filterField, #StudentListPanel, #StudentWebpage {
+#filterField, #personListPanel, #personWebpage {
     -fx-effect: innershadow(gaussian, black, 10, 0, 0, 0);
 }
 

@@ -1,7 +1,7 @@
 ---
-  layout: default.md
-  title: "Tutorial: Tracing code"
-  pageNav: 3
+layout: default.md
+title: "Tutorial: Tracing code"
+pageNav: 3
 ---
 
 # Tutorial: Tracing code
@@ -32,8 +32,8 @@ Before we proceed, ensure that you have done the following:
 1. Read the [*Architecture* section of the DG](../DeveloperGuide.md#architecture)
 1. Set up the project in Intellij IDEA
 1. Learn basic debugging features of Intellij IDEA
-   * If you are using a different IDE, we'll leave it to you to figure out the equivalent feature to use in your IDE.
-   * If you are not using an IDE, we'll let you figure out how to achieve the same using your coding toolchain.
+    * If you are using a different IDE, we'll leave it to you to figure out the equivalent feature to use in your IDE.
+    * If you are not using an IDE, we'll let you figure out how to achieve the same using your coding toolchain.
 
 ## Setting a breakpoint
 
@@ -85,7 +85,7 @@ Next, let's find out which statement(s) in the `UI` code is calling this method,
 Bingo\! `MainWindow#executeCommand()` seems to be exactly what we’re looking for\!
 
 Now let’s set the breakpoint. First, double-click the item to reach the corresponding code. Once there, click on the left gutter to set a breakpoint, as shown below.
- ![LeftGutter](../images/tracing/LeftGutter.png)
+![LeftGutter](../images/tracing/LeftGutter.png)
 
 ## Tracing the execution path
 
@@ -108,7 +108,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
    `CommandResult commandResult = logic.execute(commandText);` is the line that you end up at (i.e., the place where we put the breakpoint).
 
 1. We are interested in the `logic.execute(commandText)` portion of that line so let’s _Step in_ into that method call:<br>
-    ![StepInto](../images/tracing/StepInto.png)
+   ![StepInto](../images/tracing/StepInto.png)
 
 1. We end up in `LogicManager#execute()` (not `Logic#execute` -- but this is expected because we know the `execute()` method in the `Logic` interface is actually implemented by the `LogicManager` class). Let’s take a look at the body of the method. Given below is the same code, with additional explanatory comments.
 
@@ -155,7 +155,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
    ```
 
 1. _Step over_ the statements in that method until you reach the `switch` statement. The 'Variables' window now shows the value of both `commandWord` and `arguments`:<br>
-    ![Variables](../images/tracing/Variables.png)
+   ![Variables](../images/tracing/Variables.png)
 
 1. We see that the value of `commandWord` is now `edit` but `arguments` is still not processed in any meaningful way.
 
@@ -177,7 +177,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
 
 1. Stepping through the method shows that it calls `ArgumentTokenizer#tokenize()` and `ParserUtil#parseIndex()` to obtain the arguments and index required.
 
-1. The rest of the method seems to exhaustively check for the existence of each possible parameter of the `edit` command and store any possible changes in an `EditStudentDescriptor`. Recall that we can verify the contents of `editStudentDesciptor` through the 'Variables' window.<br>
+1. The rest of the method seems to exhaustively check for the existence of each possible parameter of the `edit` command and store any possible changes in an `EditPersonDescriptor`. Recall that we can verify the contents of `editPersonDesciptor` through the 'Variables' window.<br>
    ![EditCommand](../images/tracing/EditCommand.png)
 
 1. As you just traced through some code involved in parsing a command, you can take a look at this class diagram to see where the various parsing-related classes you encountered fit into the design of the `Logic` component.
@@ -185,8 +185,8 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
 
 1. Let’s continue stepping through until we return to `LogicManager#execute()`.
 
-    The sequence diagram below shows the details of the execution path through the Logic component. Does the execution path you traced in the code so far match the diagram?<br>
-    <puml src="../diagrams/tracing/LogicSequenceDiagram.puml" alt="Tracing an `edit` command through the Logic component"/>
+   The sequence diagram below shows the details of the execution path through the Logic component. Does the execution path you traced in the code so far match the diagram?<br>
+   <puml src="../diagrams/tracing/LogicSequenceDiagram.puml" alt="Tracing an `edit` command through the Logic component"/>
 
 1. Now, step over until you read the statement that calls the `execute()` method of the `EditCommand` object received, and step into that `execute()` method (partial code given below):
 
@@ -195,32 +195,32 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
    @Override
    public CommandResult execute(Model model) throws CommandException {
        ...
-       Student StudentToEdit = lastShownList.get(index.getZeroBased());
-       Student editedStudent = createEditedStudent(StudentToEdit, editStudentDescriptor);
-       if (!StudentToEdit.isSameStudent(editedStudent) && model.hasStudent(editedStudent)) {
-           throw new CommandException(MESSAGE_DUPLICATE_Student);
+       Person personToEdit = lastShownList.get(index.getZeroBased());
+       Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+       if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
+           throw new CommandException(MESSAGE_DUPLICATE_PERSON);
        }
-       model.setStudent(StudentToEdit, editedStudent);
-       model.updateFilteredStudentList(PREDICATE_SHOW_ALL_StudentS);
-       return new CommandResult(String.format(MESSAGE_EDIT_Student_SUCCESS, editedStudent));
+       model.setPerson(personToEdit, editedPerson);
+       model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+       return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
    }
    ```
 
 1. As suspected, `command#execute()` does indeed make changes to the `model` object. Specifically,
-   * it uses the `setStudent()` method (defined in the interface `Model` and implemented in `ModelManager` as per the usual pattern) to update the Student data.
-   * it uses the `updateFilteredStudentList` method to ask the `Model` to populate the 'filtered list' with _all_ Students.<br>
-     FYI, The 'filtered list' is the list of Students resulting from the most recent operation that will be shown to the user immediately after. For the `edit` command, we populate it with all the Students so that the user can see the edited Student along with all other Students. If this was a `find` command, we would be setting that list to contain the search results instead.<br>
-     To provide some context, given below is the class diagram of the `Model` component. See if you can figure out where the 'filtered list' of Students is being tracked.
-     <puml src="../diagrams/ModelClassDiagram.puml" width="450" /><br>
-   * :bulb: This may be a good time to read through the [`Model` component section of the DG](../DeveloperGuide.html#model-component)
+    * it uses the `setPerson()` method (defined in the interface `Model` and implemented in `ModelManager` as per the usual pattern) to update the person data.
+    * it uses the `updateFilteredPersonList` method to ask the `Model` to populate the 'filtered list' with _all_ persons.<br>
+      FYI, The 'filtered list' is the list of persons resulting from the most recent operation that will be shown to the user immediately after. For the `edit` command, we populate it with all the persons so that the user can see the edited person along with all other persons. If this was a `find` command, we would be setting that list to contain the search results instead.<br>
+      To provide some context, given below is the class diagram of the `Model` component. See if you can figure out where the 'filtered list' of persons is being tracked.
+      <puml src="../diagrams/ModelClassDiagram.puml" width="450" /><br>
+    * :bulb: This may be a good time to read through the [`Model` component section of the DG](../DeveloperGuide.html#model-component)
 
 1. As you step through the rest of the statements in the `EditCommand#execute()` method, you'll see that it creates a `CommandResult` object (containing information about the result of the execution) and returns it.<br>
    Advancing the debugger by one more step should take you back to the middle of the `LogicManager#execute()` method.<br>
 
 1. Given that you have already seen quite a few classes in the `Logic` component in action, see if you can identify in this partial class diagram some of the classes you've encountered so far, and see how they fit into the class structure of the `Logic` component:
-    <puml src="../diagrams/LogicClassDiagram.puml" width="550"/>
+   <puml src="../diagrams/LogicClassDiagram.puml" width="550"/>
 
-   * :bulb: This may be a good time to read through the [`Logic` component section of the DG](../DeveloperGuide.html#logic-component)
+    * :bulb: This may be a good time to read through the [`Logic` component section of the DG](../DeveloperGuide.html#logic-component)
 
 1. Similar to before, you can step over/into statements in the `LogicManager#execute()` method to examine how the control is transferred to the `Storage` component and what happens inside that component.
 
@@ -231,7 +231,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
 
 1. As you step through the code inside the `Storage` component, you will eventually arrive at the `JsonAddressBook#saveAddressBook()` method which calls the `JsonSerializableAddressBook` constructor, to create an object that can be _serialized_ (i.e., stored in storage medium) in JSON format. That constructor is given below (with added line breaks for easier readability):
 
-    **`JsonSerializableAddressBook` constructor:**
+   **`JsonSerializableAddressBook` constructor:**
     ```java
     /**
      * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
@@ -240,27 +240,27 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
      * {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
-        Students.addAll(
-            source.getStudentList()
+        persons.addAll(
+            source.getPersonList()
                   .stream()
-                  .map(JsonAdaptedStudent::new)
+                  .map(JsonAdaptedPerson::new)
                   .collect(Collectors.toList()));
     }
     ```
 
-1. It appears that a `JsonAdaptedStudent` is created for each `Student` and then added to the `JsonSerializableAddressBook`.
+1. It appears that a `JsonAdaptedPerson` is created for each `Person` and then added to the `JsonSerializableAddressBook`.
    This is because regular Java objects need to go through an _adaptation_ for them to be suitable to be saved in JSON format.
 
 1. While you are stepping through the classes in the `Storage` component, here is the component's class diagram to help you understand how those classes fit into the structure of the component.<br>
    <puml src="../diagrams/StorageClassDiagram.puml" width="550" />
 
-   * :bulb: This may be a good time to read through the [`Storage` component section of the DG](../DeveloperGuide.html#storage-component)
+    * :bulb: This may be a good time to read through the [`Storage` component section of the DG](../DeveloperGuide.html#storage-component)
 
 1. We can continue to step through until you reach the end of the `LogicManager#execute()` method and return to the `MainWindow#executeCommand()` method (the place where we put the original breakpoint).
 
 1. Stepping into `resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());`, we end up in:
 
-    **`ResultDisplay#setFeedbackToUser()`**
+   **`ResultDisplay#setFeedbackToUser()`**
     ```java
     public void setFeedbackToUser(String feedbackToUser) {
         requireNonNull(feedbackToUser);
@@ -306,6 +306,6 @@ Here are some quick questions you can try to answer based on your execution path
 
     4.  Add a new command
 
-    5.  Add a new field to `Student`
+    5.  Add a new field to `Person`
 
     6.  Add a new entity to the address book
