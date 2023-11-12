@@ -31,6 +31,22 @@ public class ParserTestUtil {
         }
     }
 
+    /**
+     * Executes the given {@code parser} under negative test cases, checks if <br>
+     * - the thrown {@link Exception} matches {@code expectedException}
+     *
+     * @param input Input arguments to be parsed.
+     * @param parser Parser used to use the argument.
+     * @param expectedMessage Expected message to be raised.
+     */
+    public static void assertParserFailure(String input, Parser parser, String expectedMessage) {
+        try {
+            parser.parse(input);
+            throw new AssertionError("Execution of command in negative test cases should not succeed.");
+        } catch (ParseException ce) {
+            assertEquals(expectedMessage, ce.getMessage());
+        }
+    }
 
     /**
      * Executes the given {@code parser} under negative test cases, checks if <br>
@@ -40,7 +56,7 @@ public class ParserTestUtil {
      * @param parser Parser used to use the argument.
      * @param expectedException Expected exception to be raised.
      */
-    public static void assertParserFailure(String input, Parser parser, ParseException expectedException) {
+    public static void assertCommandFailure(String input, Parser parser, ParseException expectedException) {
         try {
             parser.parse(input);
             throw new AssertionError("Execution of command in negative test cases should not succeed.");

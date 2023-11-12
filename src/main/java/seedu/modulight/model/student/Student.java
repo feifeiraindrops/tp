@@ -162,7 +162,6 @@ public class Student {
         return sid.equals(otherStudent.sid) && name.equals(otherStudent.name) && email.equals(otherStudent.email)
                 && tg.equals(otherStudent.tg) && tags.equals(otherStudent.tags)
                 && scoreList.equals(otherStudent.scoreList);
-
     }
 
     @Override

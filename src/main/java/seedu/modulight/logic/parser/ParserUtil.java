@@ -184,6 +184,14 @@ public class ParserUtil {
         return Float.parseFloat(s);
     }
 
+    private static void checkStringParsableToDouble(String s) throws ParseException {
+        try {
+            Double.parseDouble(s);
+        } catch (NumberFormatException e) {
+            throw new ParseException("A value could not be parsed into a number.");
+        }
+    }
+
     private static void checkStringParsableToFloat(String s) throws ParseException {
         try {
             Float.parseFloat(s);

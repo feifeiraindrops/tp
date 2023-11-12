@@ -17,6 +17,7 @@ import seedu.modulight.model.studentscore.StudentScore;
 import seedu.modulight.model.studentscore.exceptions.DuplicateScoresException;
 
 
+
 /**
  * A list of students that enforces uniqueness between its elements and does not allow nulls.
  * A student is considered unique by comparing using {@code Student#isSameStudent(Student)}. As such, adding
@@ -106,25 +107,25 @@ public class UniqueStudentList implements Iterable<Student> {
                 Float s1TotalScore = s1.getTotalScore();
                 Float s2TotalScore = s2.getTotalScore();
                 switch (order) {
-                    case "s":
-                        s1Value = s1.getStudentId().toString();
-                        s2Value = s2.getStudentId().toString();
-                        break;
-                    case "n":
-                        s1Value = s1.getName().toString();
-                        s2Value = s2.getName().toString();
-                        break;
-                    case "e":
-                        s1Value = s1.getEmail().toString();
-                        s2Value = s2.getEmail().toString();
-                        break;
-                    case "g":
-                        s1Value = s1.getTutorial().toString();
-                        s2Value = s2.getTutorial().toString();
-                        break;
-                    default:
-                        s1Value = s1.getStudentId().toString();
-                        s2Value = s2.getStudentId().toString();
+                case "s":
+                    s1Value = s1.getStudentId().toString();
+                    s2Value = s2.getStudentId().toString();
+                    break;
+                case "n":
+                    s1Value = s1.getName().toString();
+                    s2Value = s2.getName().toString();
+                    break;
+                case "e":
+                    s1Value = s1.getEmail().toString();
+                    s2Value = s2.getEmail().toString();
+                    break;
+                case "g":
+                    s1Value = s1.getTutorial().toString();
+                    s2Value = s2.getTutorial().toString();
+                    break;
+                default:
+                    s1Value = s1.getStudentId().toString();
+                    s2Value = s2.getStudentId().toString();
                 }
 
                 if (order.equals("o")) {

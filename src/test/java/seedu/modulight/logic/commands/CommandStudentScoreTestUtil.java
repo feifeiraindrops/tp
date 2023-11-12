@@ -30,7 +30,7 @@ public class CommandStudentScoreTestUtil {
     public static final String VALID_GCNAME_JAMES = "CA2";
     public static final String VALID_GCNAME_AMY = "Finals";
     public static final float VALID_SCORE_JAMES = 2;
-    public static final float VALID_SCORE_AMY = 1; //
+    public static final float VALID_SCORE_AMY = 1;
     public static final String VALID_COMMENT_JAMES = "Nice Work!";
     public static final String VALID_COMMENT_AMY = "Work Harder!";
     public static final String VALID_TAG_JAMES = "TutorPotential";
@@ -53,8 +53,8 @@ public class CommandStudentScoreTestUtil {
             + "CS1234+"; //+ is not alphanumeric
     public static final String INVALID_SCORE_DESC = " " + PREFIX_MARKS
             + "10^2"; //Such expression is not parsable
-    //public static final String INVALID_COMMENT_DESC
-    public static final String INVALID_TAG = "Nice work"; //spaces is not allowed
+    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG
+            + "Nice work"; //spaces is not allowed
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -106,8 +106,6 @@ public class CommandStudentScoreTestUtil {
      * - the address book, filtered person list and selected person in {@code actualModel} remain unchanged
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
-        // we are unable to defensively copy the model for comparison later, so we can
-        // only do so by copying its components.
         StudentScoreBook expectedAddressBook = new StudentScoreBook(actualModel.getStudentScoreBook());
         List<StudentScore> expectedFilteredList = new ArrayList<>(actualModel.getFilteredStudentScoreList());
 

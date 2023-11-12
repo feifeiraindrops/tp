@@ -88,7 +88,10 @@ public class EditStudentScoreCommand extends Command {
         if (!useFiltered) {
             lastShownList = studentScoreBook.getStudentScoreList();
         }
-        if (index.getZeroBased() >= lastShownList.size()) {
+
+        boolean isLessThanOne = index.getZeroBased() < 0;
+        boolean isLargerThanSize = index.getZeroBased() >= lastShownList.size();
+        if (isLessThanOne || isLargerThanSize) {
             throw new CommandException(MESSAGE_INVALID_SCORE_DISPLAYED_INDEX);
         }
 
@@ -125,6 +128,8 @@ public class EditStudentScoreCommand extends Command {
     private static StudentScore createEditedStudentScore(StudentScore studentScoreToEdit,
                                                             EditStudentScoreDescriptor editStudentScoreDescriptor) {
         assert studentScoreToEdit != null;
+        assert editStudentScoreDescriptor != null;
+
 
         StudentId updatedSid = editStudentScoreDescriptor.getStudentId()
                 .orElse(studentScoreToEdit.getStudentId());
@@ -264,6 +269,14 @@ public class EditStudentScoreCommand extends Command {
 
             EditStudentScoreDescriptor otherEditStudentScoreDescriptor =
                     (EditStudentScoreDescriptor) other;
+
+            // null safe equal
+            boolean equalSid = this.sid == otherEditStudentScoreDescriptor.sid;
+            boolean equalGcName = this.gcName == otherEditStudentScoreDescriptor.gcName;
+            if (equalSid && equalGcName) {
+                return true;
+            }
+
             return sid.equals(otherEditStudentScoreDescriptor.sid)
                     && gcName.equals((otherEditStudentScoreDescriptor).gcName);
         }

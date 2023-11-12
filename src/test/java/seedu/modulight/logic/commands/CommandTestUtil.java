@@ -19,13 +19,10 @@ import seedu.modulight.model.Model;
 import seedu.modulight.model.studentscore.StudentScore;
 import seedu.modulight.testutil.EditStudentDescriptorBuilder;
 import seedu.modulight.testutil.StudentScoreBuilder;
-
-
 /**
  * A utility class for test cases in command execution.
  */
 public class CommandTestUtil {
-
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_JAMES = "James Choo";
     public static final String VALID_SID_AMY = "A2233445R";
