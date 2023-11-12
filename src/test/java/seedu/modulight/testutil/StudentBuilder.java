@@ -22,7 +22,7 @@ public class StudentBuilder {
     /**
      * The constant DEFAULT_ID.
      */
-    public static final String DEFAULT_ID = "A0000000W";
+    public static final String DEFAULT_ID = "A1234567R";
     /**
      * The constant DEFAULT_NAME.
      */

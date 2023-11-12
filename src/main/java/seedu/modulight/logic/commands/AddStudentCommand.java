@@ -11,6 +11,7 @@ import static seedu.modulight.logic.parser.CliSyntax.PREFIX_TUTORIAL_GROUP;
 
 import java.util.List;
 
+import seedu.modulight.commons.util.ToStringBuilder;
 import seedu.modulight.logic.Messages;
 import seedu.modulight.logic.commands.exceptions.CommandException;
 import seedu.modulight.model.Model;
@@ -73,5 +74,28 @@ public class AddStudentCommand extends Command {
             addCommandUpdateBooks(model, toAdd, gc, sc);
         }
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
+    }
+
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof AddStudentCommand)) {
+            return false;
+        }
+
+        AddStudentCommand otherAddCommand = (AddStudentCommand) other;
+        return toAdd.equals(otherAddCommand.toAdd);
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .add("toAdd", toAdd)
+                .toString();
     }
 }

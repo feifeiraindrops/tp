@@ -40,12 +40,12 @@ public class ParserTestUtil {
      * @param parser Parser used to use the argument.
      * @param expectedException Expected exception to be raised.
      */
-    public static void assertCommandFailure(String input, Parser parser, ParseException expectedException) {
+    public static void assertParserFailure(String input, Parser parser, ParseException expectedException) {
         try {
             parser.parse(input);
             throw new AssertionError("Execution of command in negative test cases should not succeed.");
         } catch (ParseException ce) {
-            assertEquals(expectedException, ce);
+            assertEquals(expectedException.getMessage(), ce.getMessage());
         }
     }
     //@@author

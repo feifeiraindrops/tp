@@ -9,7 +9,7 @@ import seedu.modulight.logic.parser.exceptions.ParseException;
 /**
  * Parses input arguments and creates a new DeleteCommand object
  */
-public class DeleteStudentCommandParser {
+public class DeleteStudentCommandParser implements Parser<DeleteStudentCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteStudentCommand
      * and returns a DeleteStudentCommand object for execution.

@@ -4,8 +4,12 @@ import static seedu.modulight.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.modulight.logic.commands.CommandTestUtil.VALID_EMAIL_JAMES;
 import static seedu.modulight.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.modulight.logic.commands.CommandTestUtil.VALID_NAME_JAMES;
+import static seedu.modulight.logic.commands.CommandTestUtil.VALID_SID_AMY;
+import static seedu.modulight.logic.commands.CommandTestUtil.VALID_SID_JAMES;
 import static seedu.modulight.logic.commands.CommandTestUtil.VALID_TAG_MAKEUP_EXAM;
 import static seedu.modulight.logic.commands.CommandTestUtil.VALID_TAG_TA;
+import static seedu.modulight.logic.commands.CommandTestUtil.VALID_TG_AMY;
+import static seedu.modulight.logic.commands.CommandTestUtil.VALID_TG_JAMES;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,11 +46,11 @@ public class TypicalStudents {
     public static final Student IDA = new StudentBuilder().withId("A0000008Y").withName("Ida Mueller")
             .withEmail("hans@example.com").build();
 
-    // Manually added - Student's details found in {@code CommandTestUtil}
-    public static final Student AMY = new StudentBuilder().withName(VALID_NAME_AMY)
-            .withEmail(VALID_EMAIL_AMY).withTags(VALID_TAG_TA).build();
-    public static final Student JAMES = new StudentBuilder().withName(VALID_NAME_JAMES)
-            .withEmail(VALID_EMAIL_JAMES).withTags(VALID_TAG_TA, VALID_TAG_MAKEUP_EXAM)
+    // Manually added - Student's details found in {@code CommandTestUtil} with no student scores
+    public static final Student AMY = new StudentBuilder().withName(VALID_NAME_AMY).withId(VALID_SID_AMY)
+            .withTg(VALID_TG_AMY).withEmail(VALID_EMAIL_AMY).withTags(VALID_TAG_TA).build();
+    public static final Student JAMES = new StudentBuilder().withName(VALID_NAME_JAMES).withId(VALID_SID_JAMES)
+            .withTg(VALID_TG_JAMES).withEmail(VALID_EMAIL_JAMES).withTags(VALID_TAG_MAKEUP_EXAM)
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
@@ -56,7 +60,7 @@ public class TypicalStudents {
     /**
      * Returns an {@code AddressBook} with all the typical Students.
      */
-    public static StudentBook getTypicalAddressBook() {
+    public static StudentBook getTypicalStudentBook() {
         StudentBook ab = new StudentBook();
         for (Student student : getTypicalStudents()) {
             ab.addStudent(student);

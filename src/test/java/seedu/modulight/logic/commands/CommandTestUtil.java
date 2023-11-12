@@ -5,11 +5,11 @@ import static seedu.modulight.logic.commands.CommandStudentScoreTestUtil.VALID_G
 import static seedu.modulight.logic.commands.CommandStudentScoreTestUtil.VALID_GCNAME_JAMES;
 import static seedu.modulight.logic.commands.CommandStudentScoreTestUtil.VALID_SCORE_AMY;
 import static seedu.modulight.logic.commands.CommandStudentScoreTestUtil.VALID_SCORE_JAMES;
-import static seedu.modulight.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.modulight.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.modulight.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.modulight.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.modulight.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
 import static seedu.modulight.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.modulight.logic.parser.CliSyntax.PREFIX_TUTORIAL_GROUP;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +17,7 @@ import java.util.List;
 import seedu.modulight.logic.commands.exceptions.CommandException;
 import seedu.modulight.model.Model;
 import seedu.modulight.model.studentscore.StudentScore;
+import seedu.modulight.testutil.EditStudentDescriptorBuilder;
 import seedu.modulight.testutil.StudentScoreBuilder;
 
 
@@ -48,20 +49,35 @@ public class CommandTestUtil {
     public static final List<String> EMPTY_TAG_KEYWORDS = new ArrayList<>();
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_JAMES = " " + PREFIX_NAME + VALID_NAME_JAMES;
-    public static final String SID_DESC_AMY = " " + PREFIX_PHONE + VALID_SID_AMY;
-    public static final String SID_DESC_JAMES = " " + PREFIX_PHONE + VALID_SID_JAMES;
+    public static final String SID_DESC_AMY = " " + PREFIX_STUDENT_ID + VALID_SID_AMY;
+    public static final String SID_DESC_JAMES = " " + PREFIX_STUDENT_ID + VALID_SID_JAMES;
     public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
-    public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_TA;
-    public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_MAKEUP_EXAM;
+    public static final String EMAIL_DESC_JAMES = " " + PREFIX_EMAIL + VALID_EMAIL_JAMES;
+    public static final String TG_DESC_AMY = " " + PREFIX_TUTORIAL_GROUP + VALID_TG_AMY;
+    public static final String TG_DESC_JAMES = " " + PREFIX_TUTORIAL_GROUP + VALID_TG_JAMES;
+    public static final String TAG_DESC_TA = " " + PREFIX_TAG + VALID_TAG_TA;
+    public static final String TAG_DESC_MAKEUP_EXAM = " " + PREFIX_TAG + VALID_TAG_MAKEUP_EXAM;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
-    public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
+    public static final String INVALID_SID_DESC = " " + PREFIX_STUDENT_ID + "a234567w"; // lower case not allowed in sid
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "JAMES!yahoo"; // missing '@' symbol
-    public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
-    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_TG_DESC = " " + PREFIX_TUTORIAL_GROUP + "T0"; // single digit not allowed for tg
+    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "absent*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
+
+    public static final EditStudentCommand.EditStudentDescriptor DESC_AMY;
+    public static final EditStudentCommand.EditStudentDescriptor DESC_JAMES;
+
+    static {
+        DESC_AMY = new EditStudentDescriptorBuilder().withName(VALID_NAME_AMY)
+                .withId(VALID_SID_AMY).withEmail(VALID_EMAIL_AMY).withTg(VALID_TG_AMY)
+                .withTags(VALID_TAG_TA).build();
+        DESC_JAMES = new EditStudentDescriptorBuilder().withName(VALID_NAME_JAMES)
+                .withId(VALID_SID_JAMES).withEmail(VALID_EMAIL_JAMES).withTg(VALID_TG_JAMES)
+                .withTags(VALID_TAG_MAKEUP_EXAM).build();
+    }
 
     //@@author siqirua-reused
     //Inspired by
@@ -127,7 +143,7 @@ public class CommandTestUtil {
             command.execute(actualModel);
             throw new AssertionError("Execution of command in negative test cases should not succeed.");
         } catch (CommandException ce) {
-            assertEquals(expectedException, ce);
+            assertEquals(expectedException.getMessage(), ce.getMessage());
         } finally {
             assertEquals(actualModel, expectedModel);
         }
