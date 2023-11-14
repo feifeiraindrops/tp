@@ -310,15 +310,15 @@ Examples: `deleteComp 2` deletes the second graded component in the displayed Gr
 ## Find Commands
 ### Parameters
 
-| Parameter | Relevant Commands   | Description                   | Match Criteria                                 | Search word | Match examples       | No match examples       |
-|-----------|---------------------|-------------------------------|------------------------------------------------|-------------|----------------------|-------------------------|
-| n/        | findStu, findScore  | Name of the student           | If student name contains the search keywords   | John        | john, John Snow      | jonathan                |
-| e/        | findStu, findScore  | Email of the student          | If student email contains the search keywords  | @gmail.com  | 1234@GMAIL.COM       | 123@u.nus.edu           |
-| s/        | findStu, findScore  | Student ID of the student     | If student ID contains the search keywords     | a12345      | A1234567W, A1234568W | A2234567W               |
-| g/        | findStu, findScore  | Tutorial group of the student | Exact match                                    | t08         | T08                  | T09                     |
-| t/        | findStu, findScore  | Tag of the student            | Exact match                                    | ta          | TA                   | potential TA            |
-| x/        | findScore           | Comment of the student score  | If the comment contains the search key words   | plagiarism  | Potential plagiarism | student has plagiarised |
- | c/        | findComp, finsScore | Name of the graded components | If component name contains the search keywords | midterm     | Midterm              | mid semester test       |
+| Parameter | Relevant Commands   | Description                   | Match Criteria                                 | Search word | Match examples       | 
+|-----------|---------------------|-------------------------------|------------------------------------------------|-------------|----------------------|
+| n/        | findStu, findScore  | Name of the student           | If student name contains the search keywords   | John        | john, John Snow      |
+| e/        | findStu, findScore  | Email of the student          | If student email contains the search keywords  | @gmail.com  | 1234@GMAIL.COM       | 
+| s/        | findStu, findScore  | Student ID of the student     | If student ID contains the search keywords     | a12345      | A1234567W, A1234568W | 
+| g/        | findStu, findScore  | Tutorial group of the student | Exact match                                    | t08         | T08                  | 
+| t/        | findStu, findScore  | Tag of the student            | Exact match                                    | TA          | TA                   | 
+| x/        | findScore           | Comment of the student score  | If the comment contains the search key words   | plagiarism  | Potential plagiarism |
+ | c/        | findComp, finsScore | Name of the graded components | If component name contains the search keywords | midterm     | Midterm              |
 
 > **Note** <br>
 > 
@@ -344,7 +344,7 @@ Examples:
 
 ![findStu](images/findStu_ui.png)
 
-### Find students : `findComp`
+### Find graded component : `findComp`
 Shows all students who match the given search keyword of the specific parameter. All the relevant student scores and 
 all graded components will be displayed as well.
 
@@ -353,7 +353,7 @@ Format: `findComp [c/COMP_NAME]`
 Example: `findComp c/midterm` lists all graded components containing the string midterm  (and their associated scores). 
 All students will be shown since they are relevant.
 
-### Find students : `findScore`
+### Find student score : `findScore`
 Shows all student scores that matches the given search keyword of the specific parameter. No student or graded components will be displayed.
 Format: `findScore  [s/STUDENT_NO...] [n/NAME...] [e/EMAIL...] [g/TUTORIAL_GRP...] [c/COMP_NAME...][x/comments...][t/tags...]`
 
